@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  server:
+    container_name: stock-control-service
+    build:
+      context: .
+      target: dev
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - db
+        
+    volumes:
+      - ./src:/usr/src/app/src
+    networks:
+      - stock-service-network
+    
+  db:
+    container_name: mysql
+    image: mysql:8.2
+    restart: always
+    ports:
+      - 3306:3306
+    user: root
+    volumes:
+      - db-data:/home/Documents/mysql/data
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=stock
+    expose:
+      - 3306
+    networks:
+      - stock-service-network
+
+volumes:
+  db-data:
+
+networks:
+  stock-service-network:
+    driver: bridge
