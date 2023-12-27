@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "include": ["app/**.ts"], // Exemplo de inclusão de arquivos dentro da pasta src
+  "exclude": ["node_modules"]
+}

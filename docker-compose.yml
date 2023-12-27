@@ -3,6 +3,7 @@ version: "3"
 services:
   server:
     container_name: stock-control-service
+    restart: always
     build:
       context: .
       target: dev
@@ -12,15 +13,15 @@ services:
       - 3000:3000
       - 9229:9229
     depends_on:
-      - db
+      - mysql_stock
         
     volumes:
       - ./src:/usr/src/app/src
     networks:
       - stock-service-network
     
-  db:
-    container_name: mysql
+  mysql_stock:
+    container_name: mysql_stock
     image: mysql:8.2
     restart: always
     ports:

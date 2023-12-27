@@ -11,7 +11,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     npm ci --include=dev
 USER node 
 COPY . .
-CMD npm run dev
+CMD npx knex migrate:latest && npm run dev
 
 FROM base as prod
 ENV NODE_ENV production
@@ -21,4 +21,4 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     npm ci --omit=dev
 USER node
 COPY . . 
-CMD node app/index.js
+CMD npx knex migrate:latest && node app/index.js
