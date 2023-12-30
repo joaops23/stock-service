@@ -20,8 +20,8 @@ export class stockRoutes{
 
     // mapeamento das rotas
     async init(){
-        this.services.get('/stock', await this.index);
-        this.services.post('/stock', await this.store);
+        this.services.get('/stock', this.index);
+        this.services.post('/stock', this.store);
 
     }
 }

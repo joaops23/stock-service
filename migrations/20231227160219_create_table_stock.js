@@ -6,9 +6,12 @@ exports.up = function(knex) {
   return knex.schema
   .createTable("stock", (table) => {
     table.increments("id").primary();
-    table.integer('product_id').notNullable().references("id").inTable("products")
-    table.float('amount').defaultTo(0.0)
-    table.timestamps()
+    table.integer('product_id').nullable().unsigned();
+    table.float('amount').defaultTo(0.0);
+    table.timestamps();
+
+    //foreign keys
+    table.foreign("product_id").references("products.id");
   })
 };
 
