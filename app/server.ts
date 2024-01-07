@@ -1,5 +1,6 @@
 import { app } from "./app";
-import services from "./services/stockServices"
+import stockServices from "./services/StockServices";
+import productServices from "./services/ProductServices";
 import bodyParser from 'body-parser';
 import { SERVER_PORT } from "./config";
 
@@ -8,7 +9,9 @@ export class Server{
         const port = SERVER_PORT || "3000"
 
         app.use(bodyParser.json())
-        app.use("/api/v1", services)
+        app.use("/api/v1/stock", stockServices)
+        app.use("/api/v1/product", productServices)
+
         
         app.listen(port, () => console.log(`server running on port ${port}`))   
     }

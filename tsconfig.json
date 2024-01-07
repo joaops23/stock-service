@@ -2,10 +2,11 @@
   "compilerOptions": {
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es6",
+    "target": "es2018",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "strict": true
   },
   "include": ["app/**.ts"], // Exemplo de inclusão de arquivos dentro da pasta src
   "exclude": ["node_modules"]

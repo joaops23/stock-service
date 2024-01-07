@@ -1,19 +1,21 @@
-require ("dotenv").config()
+import { Knex } from "knex";
+import dotenv from "dotenv";
+
+dotenv.config()
+
 /* configurações do database */
-const {
+const { /* Carrega variáveis de ambiente */
     DB_CLIENT: client,
     DB_HOST: host,
-    DB_PORT: port,
     DB_USER: user,
     DB_PWD: password,
     DB_DATABASE: database
 } = process.env
 
-module.exports = {
-        client,
+const knexConfig: Knex.Config = { /* Configura o Knex */
+    client,
     connection: {
         host,
-        port,
         user,
         password,
         database
@@ -22,3 +24,5 @@ module.exports = {
         tableName: "migrations"
     }
 };
+
+export default knexConfig;

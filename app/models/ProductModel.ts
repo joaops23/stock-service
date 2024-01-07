@@ -1,24 +1,22 @@
-export class ProductModel {
-    private description: String;
-    private observation: String;
-    private status: String;
-    protected id: Number;
-    protected price: Number;
-    public created_at: Date;
-    public updated_at: Date;
+import { Repository } from "../repositories/Repository";
+import { Product } from "./../interfaces/Product";
+import { validateFullProduct } from "./../validations/ProductValidation"
 
-    constructor(id?: Number, ...options: any){
-        id != undefined ? this._setProduct() : this._setNewProcuct(options);
-        
+export class ProductModel{
+    
+    private Repository: Repository<Product>;
+
+    constructor(repository: Repository<Product>){
+        this.Repository = repository;
     }
 
-    private _setProduct(): void{
-        //TODO: instanciar o model produto e configurar atributos do product
-
+    async createProduct(productData: Product): Promise<boolean>{
+        if(await validateFullProduct(productData)){
+            await this.Repository.store(productData);
+            return true
+        } else {
+            return false;
+        }
     }
 
-    private _setNewProcuct(options: any): void {
-        //TODO: Atribui os valores enviados em options ao produto
-
-    }
 }

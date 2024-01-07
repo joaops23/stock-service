@@ -1,11 +1,11 @@
 import { Request, Response, Router } from "express";
 
 
-export class stockRoutes{
-    public services: Router;
+export class StockServices{
+    public stockServices: Router;
 
     constructor(){
-        this.services = Router();
+        this.stockServices = Router();
         this.init();
     }
 
@@ -14,19 +14,13 @@ export class stockRoutes{
         res.send("- Rota de listagem de itens");
     }
 
-    private async store(req: Request, res: Response): Promise<undefined> {
-        res.json({message: "- Cadastro de novo produto no estoque"})
-    }
-
     // mapeamento das rotas
     async init(){
-        this.services.get('/stock', this.index);
-        this.services.post('/stock', this.store);
-
+        this.stockServices.get('/', this.index);
     }
 }
 
-const routes = new stockRoutes();
+const routes = new StockServices();
 routes.init();
 
-export default routes.services;
+export default routes.stockServices;

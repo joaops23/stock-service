@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app/server.ts localhost ",
     "start": "tsc && build/server.js",
-    "knex:migrate": "knex migrate:up"
+    "knex:migrate": "knex migrate"
   },
   "keywords": [],
   "author": "",
